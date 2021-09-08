@@ -8,9 +8,7 @@ namespace Dynamics {
 /*criação de models*/
 
 //model da dinamica do bloco
-class massdynamics{
-    private:
-      
+class massdynamics{      
     public:
 
     float acceleration,position,velocity,mass;
@@ -21,12 +19,10 @@ class massdynamics{
     void set_dynamics(float accel,float pos,float vel,float m);
     void set_texture( const char *file);
 };
+
 //model da dinamica da massa
 class springdynamics{
-    
-    private:
-  
-    
+      
     public:
     float springconstant;
 
@@ -39,10 +35,7 @@ class springdynamics{
 
 //model da dinamica do tempo no sistema
 class timedynamics{
-    
-    private:
-    
-    
+
     public:
     float time, step;
     const char *background_texture;
@@ -57,7 +50,6 @@ class timedynamics{
 class interaction_spring_mass{
   
     private:
-    
     massdynamics *massdy;
     springdynamics *springdy;
     timedynamics *timedy;
@@ -73,25 +65,20 @@ class interaction_spring_mass{
 /*criação de viewer*/
 
 class viewer_spring_mass{
+   
     private:
     massdynamics *massdy;
     springdynamics *springdy;
     timedynamics *timedy;
 
-
     const int SCREEN_WIDTH = 640;
     const int SCREEN_HEIGHT = 480;
-    
-
     SDL_Window* window = nullptr;    
     SDL_Renderer *renderer;
-
     SDL_Texture *texture;
     SDL_Texture *texture1;
-   
     bool rodando;
     SDL_Rect target;
-
     SDL_Event evento; 
 
     public:
@@ -159,13 +146,11 @@ void massdynamics::set_dynamics(float accel,float pos,float vel,float m){
     mass = m;
 }
 
-
 void massdynamics::set_texture(const char *file){
     
     mass_texture= file;
 
 }
-
 
 void springdynamics::set_dynamics(float k){
     springconstant = k;
@@ -178,13 +163,11 @@ void timedynamics::set_dynamics(float t,float p){
     step = p;
 }
 
-
 void timedynamics::set_texture(const char *file){
     
     background_texture = file;
 
 }
-
 
 void interaction_spring_mass::apply_step(){
    
@@ -196,14 +179,14 @@ void interaction_spring_mass::apply_step(){
 
 }
 
- void interaction_spring_mass::settings(massdynamics *m, springdynamics *s, timedynamics *t){
+void interaction_spring_mass::settings(massdynamics *m, springdynamics *s, timedynamics *t){
     massdy = m;
     springdy = s;
     timedy = t;
 
  }
 
- void viewer_spring_mass::settings(massdynamics *m, springdynamics *s, timedynamics *t){
+void viewer_spring_mass::settings(massdynamics *m, springdynamics *s, timedynamics *t){
     massdy = m;
     springdy = s;
     timedy = t;
@@ -306,7 +289,7 @@ int main()
 
 // valores inicias dos objetos
     const float a0 = 0;
-    const float x0 = 200;
+    const float x0 = 500;
     const float v0 = 0;
     const float m0 = 1;
     const float k0 = 1;
@@ -323,7 +306,6 @@ int main()
 
     C1.settings(&M1,&S1,&T);
     V1.settings(&M1,&S1,&T);
-
     V1.create_visual_config();
     
 
